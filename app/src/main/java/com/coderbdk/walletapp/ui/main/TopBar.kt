@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.Card
@@ -264,7 +263,6 @@ class TopBar {
                     }
 
 
-
                 }
 
                 // Text(text = "Hello")
@@ -286,141 +284,131 @@ class TopBar {
 
                 // val midW = w / 2f
                 val midH = h / 2f
-                val points = listOf(
-                    //start
-                    Offset(10f, h - 10f),
-                    Offset(0f, h - 75f),
-                    // point
-                    Offset(w * 0.05f, h - 100),
-                    Offset(w * 0.1f, h - 75),
-                    Offset(w * 0.15f, h - 85),
-
-                    Offset(w * 0.2f, h - 125),
-                    Offset(w * 0.25f, h - 175),
-                    Offset(w * 0.3f, h - 230),
-
-                    Offset(w * 0.35f, h - 275),
-                    Offset(w * 0.4f, h - 265),
-                    Offset(w * 0.45f, h - 255),
-
-                    Offset(w * 0.5f, h - midH + 50),
-
-                    Offset(w * 0.55f, h - 235),
-
-                    Offset(w * 0.6f, h - 230),
-                    Offset(w * 0.65f, h - 240),
-                    Offset(w * 0.7f, h - 255),
-                    Offset(w * 0.75f, h - 280),
-                    Offset(w * 0.8f, h - 285),
-                    Offset(w * 0.85f, h - 290),
-                    Offset(w * 0.9f, h - 295),
-                    Offset(w * 0.95f, h - 295),
-                    // end point
-                    Offset(w, midH),
-                    Offset(w, h - 25f),
-                    Offset(w - 15, h - 15f)
-
-                )
 
 
-                /*
-            drawPoints(
-                points = points,
-                color = Color.Red,
-                strokeWidth = 10f,
-                pointMode = PointMode.Points
-            )*/
+                drawIntoCanvas { canvas ->
+                    val points = listOf(
+                        //start
+                        Offset(-10f, h - 0f),
+                        Offset(-10f, h - 10f),
+                        Offset(-10f, h - 75f),
+                        // point
+                        Offset(w * 0.05f, h - 100),
+                        Offset(w * 0.1f, h - 75),
+                        Offset(w * 0.15f, h - 85),
 
+                        Offset(w * 0.2f, h - 125),
+                        Offset(w * 0.25f, h - 175),
+                        Offset(w * 0.3f, h - 230),
 
-                val path = Path()
-                //start
-                path.moveTo(points[0].x, points[0].y)
-                points.forEach {
-                    path.lineTo(it.x, it.y)
-                }
-                // end
-                drawPath(
-                    brush = Brush.horizontalGradient(
+                        Offset(w * 0.35f, h - 275),
+                        Offset(w * 0.4f, h - 265),
+                        Offset(w * 0.45f, h - 255),
+
+                        Offset(w * 0.5f, h - midH + 50),
+
+                        Offset(w * 0.55f, h - 235),
+
+                        Offset(w * 0.6f, h - 230),
+                        Offset(w * 0.65f, h - 240),
+                        Offset(w * 0.7f, h - 255),
+                        Offset(w * 0.75f, h - 280),
+                        Offset(w * 0.8f, h - 285),
+                        Offset(w * 0.85f, h - 290),
+                        Offset(w * 0.9f, h - 295),
+                        Offset(w + 10, h - 295),
+                        // end point
+                        Offset(w, midH),
+                        Offset(w, h - 25f),
+                        Offset(w - 15, h - 15f)
+
+                    )
+
+                    /*
+                drawPoints(
+                    points = points,
+                    color = Color.Red,
+                    strokeWidth = 10f,
+                    pointMode = PointMode.Points
+                )*/
+
+                    val path = Path()
+                    val paint = Paint()
+                    paint.pathEffect = PathEffect.cornerPathEffect(50f)
+
+                    paint.shader = LinearGradientShader(
+                        Offset(0f, 0f),
+                        Offset(w, h),
                         colors = listOf(
                             Color(0xffC172CD),
                             Color(0xffC172CD),
                             Color(0xffAF75D9),
                             Color(0xffAF75D9),
                         )
-                    ),
-                    path = path,
-                )
-                drawPath(
-                    brush = Brush.horizontalGradient(
-                        colors = listOf(
-                            Color(0xffC172CD),
-                            Color(0xffC172CD),
-                            Color(0xffAF75D9),
-                            Color(0xffAF75D9),
-
-                            )
-                    ),
-                    path = path,
-                    style = Stroke(
-                        pathEffect = PathEffect.cornerPathEffect(50f),
-                        width = 10f
-                    ),
-                )
-
-                // new path
-                val points2 = listOf(
+                    )
                     //start
-                    Offset(15f, h - 15f),
-                    Offset(5f, h - 10f),
-                    Offset(0f, h - 45f),
-                    // point
-                    Offset(w * 0.05f, h - 75),
-                    Offset(w * 0.1f, h - 55),
-                    Offset(w * 0.15f, h - 45),
-
-                    Offset(w * 0.2f, h - 65),
-                    Offset(w * 0.25f, h - 85),
-                    Offset(w * 0.3f, h - 145),
-
-                    Offset(w * 0.35f, h - 195),
-                    Offset(w * 0.4f, h - 215),
-                    Offset(w * 0.45f, h - 210),
-
-                    Offset(w * 0.5f, h - midH + 125),
-
-                    Offset(w * 0.55f, h - 175),
-
-                    Offset(w * 0.6f, h - 185),
-                    Offset(w * 0.65f, h - 195),
-                    Offset(w * 0.7f, h - 215),
-
-                    Offset(w * 0.75f, h - 225),
-                    Offset(w * 0.8f, h - 235),
-                    Offset(w * 0.85f, h - 235),
-
-                    Offset(w * 0.9f, h - 230),
-                    Offset(w * 0.95f, h - 235),
-                    // end point
-                    Offset(w, midH + 75),
-                    Offset(w, h - 25f),
-                    Offset(w - 15, h - 15f)
-
-                )
-                /*drawPoints(
-                points = points2,
-                color = Color.Red,
-                strokeWidth = 10f,
-                pointMode = PointMode.Points
-            )*/
-                val path2 = Path()
-                //start
-                path2.moveTo(points[0].x, points[0].y)
-                points2.forEach {
-                    path2.lineTo(it.x, it.y)
+                    path.moveTo(points[0].x, points[0].y)
+                    points.forEach {
+                        path.lineTo(it.x, it.y)
+                    }
+                    // end
+                    canvas.drawPath(path, paint)
                 }
-                // end
-                drawPath(
-                    brush = Brush.verticalGradient(
+
+
+                drawIntoCanvas { canvas ->
+                    // new path
+                    val points = listOf(
+                        //start
+                        Offset(-10f, h - 15f),
+                        Offset(-10f, h - 10f),
+                        Offset(-10f, h - 45f),
+                        // point
+                        Offset(w * 0.05f, h - 75),
+                        Offset(w * 0.1f, h - 55),
+                        Offset(w * 0.15f, h - 45),
+
+                        Offset(w * 0.2f, h - 65),
+                        Offset(w * 0.25f, h - 85),
+                        Offset(w * 0.3f, h - 145),
+
+                        Offset(w * 0.35f, h - 195),
+                        Offset(w * 0.4f, h - 215),
+                        Offset(w * 0.45f, h - 210),
+
+                        Offset(w * 0.5f, h - midH + 125),
+
+                        Offset(w * 0.55f, h - 175),
+
+                        Offset(w * 0.6f, h - 185),
+                        Offset(w * 0.65f, h - 195),
+                        Offset(w * 0.7f, h - 215),
+
+                        Offset(w * 0.75f, h - 225),
+                        Offset(w * 0.8f, h - 235),
+                        Offset(w * 0.85f, h - 235),
+
+                        Offset(w * 0.9f, h - 235),
+                        Offset(w + 10, h - 235),
+                        // end point
+                        Offset(w, midH + 75),
+                        Offset(w, h - 25f),
+                        Offset(w - 15, h - 15f)
+
+                    )
+                    /*drawPoints(
+                    points = points,
+                    color = Color.Red,
+                    strokeWidth = 10f,
+                    pointMode = PointMode.Points
+                )*/
+                    val path = Path()
+                    val paint = Paint()
+                    paint.pathEffect = PathEffect.cornerPathEffect(50f)
+
+                    paint.shader = LinearGradientShader(
+                        Offset(0f, 0f),
+                        Offset(w, h),
                         colors = listOf(
 
                             Color(0xffBF69CA),
@@ -428,25 +416,16 @@ class TopBar {
                             Color(0xFFA16CC7),
                             Color(0xffCB67C1),
                         ),
+                    )
+                    //start
+                    path.moveTo(points[0].x, points[0].y)
+                    points.forEach {
+                        path.lineTo(it.x, it.y)
+                    }
+                    // end
+                    canvas.drawPath(path, paint)
+                }
 
-                        ),
-                    path = path2,
-                )
-                drawPath(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color(0xffBF69CA),
-                            Color(0xffC36AC6),
-                            Color(0xFFA16CC7),
-                            Color(0xffCB67C1),
-                        )
-                    ),
-                    path = path2,
-                    style = Stroke(
-                        pathEffect = PathEffect.cornerPathEffect(50f),
-                        width = 10f
-                    ),
-                )
 
                 // draw
                 this.drawIntoCanvas {

@@ -3,6 +3,7 @@ package com.coderbdk.walletapp.ui.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -28,8 +30,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.DrawStyle
+import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -126,7 +132,7 @@ fun MainUIComponent() {
             .fillMaxSize()
             .padding(10.dp),
     ) {
-       // PagerIndicator()
+        PagerIndicator(false)
         Text(
             text = "My Wallet",
             fontSize = 30.sp,
@@ -271,32 +277,48 @@ fun HomeItem() {
 }
 
 @Composable
-private fun PagerIndicator() {
+private fun PagerIndicator(isHome: Boolean) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(15.dp),
         horizontalArrangement = Arrangement.Center
     ) {
-        Box(
+        Canvas(
             modifier = Modifier
-                .size(10.dp)
-                .background(
-                    color = Color.Magenta,
-                    shape = RoundedCornerShape(10.dp)
-                )
-                .padding(end = 25.dp)
+                .fillMaxWidth()
+                .padding(5.dp),
         ) {
 
-        }
-        Box(
-            modifier = Modifier
-                .size(10.dp)
-                .background(
-                    color = Color.Magenta,
-                    shape = RoundedCornerShape(10.dp)
-                )
+            drawCircle(
+                brush = Brush.horizontalGradient(
+                    colors = listOf(
+                        Color(0xff9F7EE7),
+                        Color(0xffd565b9),
 
-        ) {
+                        )
+                ),
+                10f,
+                style = if(!isHome){
+                   Stroke(
+                        width = 1f
+                    )
+                }else Fill
+            )
+            drawCircle(
+                brush = Brush.horizontalGradient(
+                    colors = listOf(
+                        Color(0xff9F7EE7),
+                        Color(0xffd565b9),
 
+                        )
+                ),
+                10f,
+                style = if(isHome)Stroke(
+                    width = 1f
+                )else Fill,
+                center = Offset(size.width/2 + 35,0f)
+            )
         }
     }
 }
